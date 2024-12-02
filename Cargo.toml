@@ -1,0 +1,12 @@
+[package]
+name = "aoc_rust"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "day_1_2024"
+path = "src/day_1_2024.rs"
+
+[[bin]]
+name = "day_2_2024"
+path = "src/day_2_2024.rs"
