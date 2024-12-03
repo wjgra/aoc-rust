@@ -3,7 +3,6 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn get_input_data(input_path: &str) -> Vec<Vec<i64>> {
-
     println!("Loading input at {input_path}");
     let input = File::open(input_path)
         .expect("Failed to open file");
