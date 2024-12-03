@@ -11,7 +11,7 @@ fn get_data_lists(path: &str) -> (Vec<i64>, Vec<i64>) {
 
 
     let line_it: Vec<Vec<i64>> = buf.lines()
-        .map(|l| l.unwrap().split_whitespace()
+        .map(|l| l.unwrap().trim().split_whitespace()
             .map(|num| num.parse::<i64>().unwrap()).collect()).
         collect();
 
