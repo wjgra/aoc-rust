@@ -10,3 +10,14 @@ path = "src/day_1_2024.rs"
 [[bin]]
 name = "day_2_2024"
 path = "src/day_2_2024.rs"
+
+[[bin]]
+name = "day_3_2024"
+path = "src/day_3_2024.rs"
+
+[[bin]]
+name = "day_4_2024"
+path = "src/day_4_2024.rs"
+
+[dependencies]
+regex = "1.11.1"
