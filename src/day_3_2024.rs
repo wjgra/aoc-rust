@@ -17,57 +17,25 @@ fn main() {
 
     println!("Total: {total}");
 
-    // Part two - total result of enabled mul instructions
-    let extended_input = String::from("do()") + &input_file;
-    // println!("{extended_input}");
-    let re = Regex::new(r"(.+?)mul\(([0-9]{1,3}),([0-9]{1,3})\)").unwrap();
-    let mut total: i64 = 0;
+
+    // Part two - mul may be enabled/disabled
+    let re_any = Regex::new(r"(mul\([0-9]{1,3},[0-9]{1,3}\)|do\(\)|don't\(\))").unwrap();
+    let re_mul = Regex::new(r"mul\(([0-9]{1,3}),([0-9]{1,3})\)").unwrap();
+
     let mut enabled = true;
-
-    let re_do_dont = Regex::new(r"do(.{0,3})\(\)").unwrap();
-    for (_, [between, num1, num2]) in re.captures_iter(&extended_input).map(|c| c.extract()) {
-        // println!("{between} {num1} {num2}");
-        
-        let dos = re_do_dont.captures_iter(&between).map(|c| c.extract());        
-        let last_opt = dos.last();
-
-        if last_opt.is_none() {
-            // println!("None!");
+    let mut total = 0;
+    for (_,[any]) in re_any.captures_iter(&input_file).map(|c| c.extract()) {
+        if any == "do()" {
+            enabled = true;
         }
-        else {
-            let (_, [last]) = last_opt.unwrap();
-            // println!("{last}");
-            if last == "n't" {
-                enabled = false;
-            }
-            else if last == "" {
-                enabled = true;
-            }
+        else if any == "don't()" {
+            enabled = false;
         }
-
-
-        // for (_, [nt]) in re_do_dont.captures_iter(&between) {
-
-        // }
-
-        // for (_, [nt]) in dos.map(|c| c.extract()) {
-        //     println!("{nt}");
-        // }
-
-        // if nt == "n't" {
-        //     enabled = false;
-        // }
-        // else if nt == "" {
-        //     enabled = true;
-        // }
-        if enabled {
-            total += (num1.parse::<i64>().unwrap()) * (num2.parse::<i64>().unwrap());
+        else if enabled {
+            for (_, [num1, num2]) in re_mul.captures_iter(any).map(|c| c.extract()) {
+                total += (num1.parse::<i64>().unwrap()) * (num2.parse::<i64>().unwrap());
+            }
         }
     }
     println!("Total: {total}");
-
-    let re = Regex::new(r"(mul\(([0-9]{1,3}),([0-9]{1,3})\))|(do\(\))|(don't\(\))").unwrap();
-
-
-    
 }
