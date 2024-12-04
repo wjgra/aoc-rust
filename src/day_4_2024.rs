@@ -40,19 +40,13 @@ fn check_xmas_present(data: &Vec<Vec<char>>, i: usize, j: usize, x_dir: i8, y_di
 
 // Upper left corner is zeroth, upper right is 1st, ...
 fn index_to_corner(idx: usize) -> (i8, i8) {
-    if idx % 4 == 0 {
-        return (-1, -1);
+    match idx % 4 {
+        0 => return (-1, -1),
+        1 => return (-1, 1),
+        2 => return (1, 1),
+        3 => return (1, -1),
+        _ => unreachable!()
     }
-    if idx % 4 == 1 {
-        return (-1, 1);
-    }
-    if idx % 4 == 2 {
-        return (1, 1);
-    }
-    if idx % 4 == 3 {
-        return (1, -1);
-    }
-    return (0,0); // err
 }
 
 // Here, dir_idx indicates the first M (order M-M-S-S clockwise)
@@ -92,30 +86,16 @@ fn main() {
     let mut count = 0;
     for i in 0..width {
         for j in 0..height {
-            // Check for each direction of XMAS
-            if check_xmas_present(&data, i, j, 0, 1) { // N
-                count += 1;
-            }
-            if check_xmas_present(&data, i, j, 0, -1) { // S
-                count += 1;
-            }
-            if check_xmas_present(&data, i, j, 1, 0) { // E
-                count += 1;
-            }
-            if check_xmas_present(&data, i, j, -1, 0) { // W
-                count += 1;
-            }
-            if check_xmas_present(&data, i, j, 1, 1) { // NE
-                count += 1;
-            }
-            if check_xmas_present(&data, i, j, 1, -1) { // SE
-                count += 1;
-            }
-            if check_xmas_present(&data, i, j, -1, 1) { // NW
-                count += 1;
-            }
-            if check_xmas_present(&data, i, j, -1, -1) { // SW
-                count += 1;
+            // Check for each direction of XMAS (excluding null direction vector)
+            for x in -1..=1 {
+                for y in -1..=1 {
+                    if (x == 0) && (y == 0) {
+                        continue;
+                    }
+                    if check_xmas_present(&data, i, j, x, y) {
+                        count += 1;
+                    }
+                }
             }
         }
     }
@@ -126,17 +106,10 @@ fn main() {
     for i in 0..width {
         for j in 0..height {
             // Check for each direction of X-MAS
-            if check_x_mas_present(&data, i, j, 0) {
-                count += 1;
-            }
-            if check_x_mas_present(&data, i, j, 1) {
-                count += 1;
-            }
-            if check_x_mas_present(&data, i, j, 2) {
-                count += 1;
-            }
-            if check_x_mas_present(&data, i, j, 3) {
-                count += 1;
+            for dir_idx in 0..4 {
+                if check_x_mas_present(&data, i, j, dir_idx) {
+                    count += 1;
+                }
             }
         }
     }
