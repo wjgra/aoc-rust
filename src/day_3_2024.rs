@@ -4,7 +4,7 @@ use regex::Regex;
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let input_path = if args.len() < 2 { "day_3_example.txt"} else { &args[1] };
+    let input_path = if args.len() < 2 { "input/day_3_example.txt"} else { &args[1] };
 
     let input_file = std::fs::read_to_string(input_path).unwrap();
 

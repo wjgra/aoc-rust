@@ -27,7 +27,7 @@ fn get_data_lists(path: &str) -> (Vec<i64>, Vec<i64>) {
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let input_path = if args.len() < 2 { "day_1_example.txt"} else { &args[1] };
+    let input_path = if args.len() < 2 { "input/day_1_example.txt"} else { &args[1] };
 
     let (mut first_list, mut second_list) = get_data_lists(&input_path);
 

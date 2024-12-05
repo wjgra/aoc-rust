@@ -76,7 +76,7 @@ fn check_x_mas_present(data: &Vec<Vec<char>>, i: usize, j: usize, dir_idx: usize
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let input_path = if args.len() < 2 { "day_4_example.txt"} else { &args[1] };
+    let input_path = if args.len() < 2 { "input/day_4_example.txt"} else { &args[1] };
     let data = get_input_data(input_path);
 
     let width = data.len();

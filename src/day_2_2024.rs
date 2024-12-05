@@ -61,7 +61,7 @@ fn check_dampened_record_is_safe(record: &Vec<i64>) -> bool{
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    let input_path = if args.len() < 2 { "day_2_example.txt"} else { &args[1] };
+    let input_path = if args.len() < 2 { "input/day_2_example.txt"} else { &args[1] };
     let data = get_input_data(input_path);
 
     // Part one - check if strictly monotonic and no level changes by more than three
