@@ -119,6 +119,12 @@ fn main() {
 
     // Part two - how many places can we put an obstacle that cause a loop?
 
+    /* 
+     * REMARK: the solution to part two is pretty terrible, and takes about 10s to run on my PC. Two ways to
+     * speed it up: a) only check for obstacles on the path from part one and b) only check for matching dirs
+     * at the point at which you change directions. I will implement both when I get the chance.
+     */
+
     // Find the intial position of the guard (who is pointing up)
     let mut guard_i: i32 = -1;
     let mut guard_j: i32 = -1;
