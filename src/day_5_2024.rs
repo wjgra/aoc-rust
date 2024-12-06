@@ -123,7 +123,7 @@ fn main() {
 
                 return std::cmp::Ordering::Equal;
             };
-            
+
             let mut sorted_list = list.to_vec();
             sorted_list.sort_unstable_by(compare);
 
