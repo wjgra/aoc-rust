@@ -68,7 +68,7 @@ fn main() {
                 reachable.push((current.0 + operands[next_idx as usize], next_idx));
                 reachable.push((current.0 * operands[next_idx as usize], next_idx));
                 
-                let operand_digits = operands[next_idx as usize].to_string().chars().count();
+                let operand_digits = operands[next_idx as usize].ilog10() + 1;
                 let base: i64 = 10;
                 reachable.push((current.0 * base.pow(operand_digits as u32) + operands[next_idx as usize], next_idx));
             }
