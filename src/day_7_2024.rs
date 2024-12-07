@@ -50,7 +50,7 @@ fn main() {
     }
     println!("Part one: {total}");
 
-    // Part one - sum of targets achievable with *, + and concat
+    // Part two - sum of targets achievable with *, + and concat
     let mut total: i64 = 0;
     for (target, operands) in target_list.iter().zip(operands_list.iter()) {
         let mut reachable: Vec<(i64, i64)> = vec![(operands[0], 0)]; // Numbers reachable by a given index
@@ -70,7 +70,7 @@ fn main() {
                 
                 let operand_digits = operands[next_idx as usize].to_string().chars().count();
                 let base: i64 = 10;
-                reachable.push((current.0 * base.pow(operand_digits as u32) + operands[next_idx as usize], next_idx))
+                reachable.push((current.0 * base.pow(operand_digits as u32) + operands[next_idx as usize], next_idx));
             }
         }        
     }
