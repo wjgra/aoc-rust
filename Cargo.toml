@@ -47,6 +47,10 @@ path = "src/day_10_2024.rs"
 name = "day_11_2024"
 path = "src/day_11_2024.rs"
 
+[[bin]]
+name = "day_12_2024"
+path = "src/day_12_2024.rs"
+
 [dependencies]
 gcd = "2.3.0"
 multimap = "0.10.0"
